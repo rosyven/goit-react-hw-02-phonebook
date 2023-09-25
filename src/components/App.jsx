@@ -17,9 +17,8 @@ export class App extends Component {
     this.setState({ filter: event.target.value });
   };
 
-  handleSubmit = event => {
-    event.preventDefault();
-    const { name, number, contacts } = this.state;
+  handleSubmit = ({ name, number }) => {
+    const { contacts } = this.state;
 
     if (contacts.some(contact => contact.name === name)) {
       alert(`${name} is already in contacts.`);
@@ -37,8 +36,8 @@ export class App extends Component {
     };
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
-      name: '',
-      number: '',
+      // name: '',
+      // number: '',
     }));
   };
 
@@ -65,7 +64,7 @@ export class App extends Component {
           onSubmit={this.handleSubmit}
         />
 
-        <h2>ontacts:</h2>
+        <h2>Contacts</h2>
         <Filter value={filter} onChange={this.handleFilterChange} />
         <ContactList contacts={filteredContacts} onDelete={this.handleDelete} />
       </div>
